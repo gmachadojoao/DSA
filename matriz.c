@@ -13,7 +13,7 @@ int main()
     int soma[4][4] = 0; // Matriz para armazenar a soma das linhas de M com as colunas de N
 
     // Entrada da matriz M
-    printf("Digite os elementos da matriz M (4x6):\n");
+    
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 6; j++)
@@ -24,7 +24,7 @@ int main()
     }
 
     // Entrada da matriz N
-    printf("\nDigite os elementos da matriz N (6x4):\n");
+    
     for (int i = 0; i < 6; i++)
     {
         for (int j = 0; j < 4; j++)
