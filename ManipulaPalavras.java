@@ -22,7 +22,6 @@ class Palavra {
 
 public class contaPalavra {
     public static void main(String[] args) {
-        // Aqui você pode adicionar a lógica de leitura de arquivo e contagem de
-        // palavras
+
     }
 }
