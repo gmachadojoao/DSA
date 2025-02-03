@@ -11,7 +11,7 @@ class Palavra {
     public int linha;
 
     public int totalLine() {
-        return linha; // Não precisamos incrementar linha aqui
+        return linha; 
     }
 
     public Palavra(String palavra, int linha) {
