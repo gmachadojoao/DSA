@@ -1,42 +1,44 @@
-package Q1;
-
 import java.util.Scanner;
 
-public class Q1 {
-    public static boolean theEnd(String x) {
-        // Verifica se a string tem pelo menos 3 caracteres antes de acessar
-        if (x.length() == 3 && x.charAt(0) == 'F' && x.charAt(1) == 'I' && x.charAt(2) == 'M') {
+public class Q3 {
+    public static boolean theEnd(String str) {
+
+        if (str.length() == 3 || str.charAt(0) == 'F' && str.charAt(1) == 'I' && str.charAt(2) == 'M') {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
-    public static boolean ehPalin(String x) {
-        int n = x.length();
-        for (int i = 0; i < n / 2; i++) {
-            if (x.charAt(i) != x.charAt(n - 1 - i)) {
-                return false;
-            }
+    public static String cifra(String str) {
+        String result = "";
+
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            c += 3;
+            result += c;
+
         }
-        return true;
+        return result;
     }
 
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         String input;
-        boolean status = true;
+        String cripto;
 
-        while (status) {
+        input = sc.nextLine();
+
+        while (!theEnd(input)) {
+            cripto = cifra(input);
+            System.out.println(cripto);
+
             input = sc.nextLine();
-            if (theEnd(input)) {
-                status = false;
-            } else if (ehPalin(input)) {
-                System.out.println("SIM");
-            } else {
-                System.out.println("NAO");
-            }
+
         }
 
         sc.close();
     }
+
 }
