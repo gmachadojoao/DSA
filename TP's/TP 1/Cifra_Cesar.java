@@ -19,7 +19,7 @@ public class Q3 {
 
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
-            c = (char) ((c + 3 - 'a') % 26 + 'a');
+            c +=3;
             result += c;
 
         }
