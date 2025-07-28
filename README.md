@@ -1,2 +1,2 @@
-# AEDS II
+# DSA
 Repositório para estudo em Algoritmos e logica de programação
