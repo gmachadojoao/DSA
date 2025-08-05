@@ -1,28 +1,31 @@
 #include <stdio.h>
 #include <string.h>
 
-void ehFim(char *str){
-    if(str[0] == "F" && str [1] == "I" && str [2] =="M"){
-        printf("FIM");
-    }
+int ehFim(const char *str) {
+    // Comparação direta de caracteres
+    return (str[0] == 'F' && str[1] == 'I' && str[2] == 'M' && str[3] == '\0');
 }
 
-int contaMaisculua(char *str){
-    int contaMais=0;
-    
-    for(int i = 0; i!=str; i++){
-        if(str[i] >="A" && str[i]<="Z"){
-            contaMais++;
+int contaMaiuscula(const char *str) {
+    int conta = 0;
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] >= 'A' && str[i] <= 'Z') {
+            conta++;
         }
     }
-    return contaMais;
+    return conta;
 }
 
-int main(){
-
+int main(void) {
     char str[100];
-    scanf(" %[^\n]", str);
-    contaMaisculua(str);
-    ehFim(str);
+
+    while (scanf(" %[^\n]", str) == 1) {
+        if (ehFim(str)) {
+            printf("FIM\n");
+            break;
+        }
+        printf("%d\n", contaMaiuscula(str));
+    }
+
     return 0;
 }
