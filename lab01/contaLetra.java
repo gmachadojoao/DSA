@@ -1,40 +1,29 @@
-import java.util.Scanner;
+#include <stdio.h>
+#include <string.h>
 
-public class ContaMaiuscula {
+void ehFim(char *str){
+    if(str[0] == 'F' && str [1] == 'I' && str [2] =='M'){
+        printf("FIM");
+    }
+}
 
-    // Método para verificar se a palavra é "FIM"
-    public static boolean theEnd(String str) {
-        if (str.length() == 3 && str.charAt(0) == 'F' && str.charAt(1) == 'I' && str.charAt(2) == 'M') {
-            return true;
-        } else {
-            return false;
+int contaMaisculua(char *str){
+    int contaMais=0;
+
+    for(int i = 0; str[i]!='\0'; i++){
+        if(str[i] >='A' && str[i]<='Z'){
+            contaMais++;
         }
     }
+    return contaMais;
+}
 
-    public static int contaLetra(String palavra) {
-        int count = 0;
-        for (int i = 0; i < palavra.length(); i++) {
-            if (Character.isUpperCase(palavra.charAt(i))) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String palavra = "";
-
-        while (true) {
-            palavra = sc.nextLine();
-
-            if (theEnd(palavra)) {
-                break;
-            }
-
-            System.out.println(contaLetra(palavra));
-        }
-
-        sc.close();
-    }
+int main(){
+    char str[100];
+    printf("------");
+    scanf(" %[^\n]", str);
+    contaMaisculua(str);
+    ehFim(str);
+    printf("%d", contaMaisculua);
+    return 0;
 }
