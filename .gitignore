@@ -1,0 +1,42 @@
+# ------------------
+# Java
+# ------------------
+# Ignorar arquivos compilados
+*.class
+
+# ------------------
+# C/C++
+# ------------------
+# Ignorar arquivos objeto
+*.o
+*.obj
+
+# Ignorar executáveis
+*.exe
+*.out
+*.app
+
+# ------------------
+# Logs e temporários
+# ------------------
+*.log
+*.tmp
+
+# ------------------
+# IDEs e editores
+# ------------------
+# Eclipse
+.settings/
+.project
+.classpath
+
+# IntelliJ IDEA
+*.iml
+.idea/
+
+# VS Code
+.vscode/
+
+# Mac/Windows
+.DS_Store
+Thumbs.db
