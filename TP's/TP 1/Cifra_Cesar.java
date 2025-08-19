@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Q3 {
+public class Cifra_Cesar {
     public static boolean theEnd(String str) { /*
                                                 * função para verificar se a palavra FIM foi digitada
                                                 * ela recebe o mesmo input que a função cifra, caso seja TRUE, o codigo
