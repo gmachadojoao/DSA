@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Q1 {
+class Palindromo {
 	public static boolean theEnd(String str) {
 
 		if (str.length() == 3 && str.charAt(0) == 'F' && str.charAt(1) == 'I' && str.charAt(2) == 'M') {
