@@ -60,6 +60,29 @@ public class Pilha {
         return topo;
     }
 
+     public void ordenaPilha(){
+         for (int i = 0; i < array.length - 1; i++) {
+            int menor = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (array[menor] > array[j]) {
+                    menor = j;
+                }
+            }
+            // troca
+            int temp = array[i];
+            array[i] = array[menor];
+            array[menor] = temp;
+        }
+
+        // Imprime vetor ordenado
+        System.out.println("Pilha ordenada:");
+        System.out.print("[ ");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.print("]");
+    }
+
     // Teste da pilha
     public static void main(String[] args) throws Exception {
         Pilha p1 = new Pilha(6);
@@ -75,5 +98,7 @@ public class Pilha {
 
         System.out.println("Desempilhando: " + p1.desempilhar()); // 20
         p1.mostrar(); // deve mostrar: 15 11 10
+
+        p1.ordenaPilha();
     }
 }
