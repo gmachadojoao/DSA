@@ -5,7 +5,6 @@ public class bee_1068 {
     public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
         
-        int N = sc.nextInt(); 
         sc.nextLine(); 
         String expressao = sc.nextLine(); 
 

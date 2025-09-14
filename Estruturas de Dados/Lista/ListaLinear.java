@@ -4,7 +4,7 @@ public class ListaLinear {
     private int[] array;
     private int posInicial;
 
-     public ListaLinear() {
+    public ListaLinear() {
         array = new int[MAX_ELEMENTOS];
         posInicial = 0;
     }
@@ -86,28 +86,61 @@ public class ListaLinear {
         return retorno;
     }
 
+    // 🔹 Método Bubble Sort
+    public void bubbleSort() {
+        for (int i = 0; i < posInicial - 1; i++) {
+            for (int j = 0; j < posInicial - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // 🔹 Método Insertion Sort
+    public void insertionSort() {
+        for (int i = 1; i < posInicial; i++) {
+            int chave = array[i];
+            int j = i - 1;
+            while (j >= 0 && array[j] > chave) {
+                array[j + 1] = array[j];
+                j--;
+            }
+            array[j + 1] = chave;
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         System.out.println("==== LISTA ESTATICA ====");
         ListaLinear lista = new ListaLinear();
-        int x1, x2, x3;
 
-        lista.inserirInicio(1);
-        lista.inserirInicio(0);
+        lista.inserirFim(5);
+        lista.inserirFim(1);
+        lista.inserirFim(4);
         lista.inserirFim(2);
         lista.inserirFim(3);
-        System.out.println("Após insercoes no Inicio e Fim:");
+
+        System.out.print("Lista original: ");
         lista.mostrar();
 
-        lista.inserir(4, 3);
-        lista.inserir(5, 2);
-        System.out.print("Lista completa apos insercoes nas posições: ");
+        // Teste Bubble Sort
+        lista.bubbleSort();
+        System.out.print("Lista ordenada (Bubble Sort): ");
         lista.mostrar();
 
-        x1 = lista.removerInicio();
-        x2 = lista.removerFim();
-        x3 = lista.remover(2);
+        // Reinserindo desordenada
+        lista = new ListaLinear();
+        lista.inserirFim(5);
+        lista.inserirFim(1);
+        lista.inserirFim(4);
+        lista.inserirFim(2);
+        lista.inserirFim(3);
 
-        System.out.print("Apos remocoes (" + x1 + ", " + x2 + ", " + x3 + "): ");
+        // Teste Insertion Sort
+        lista.insertionSort();
+        System.out.print("Lista ordenada (Insertion Sort): ");
         lista.mostrar();
     }
 }
