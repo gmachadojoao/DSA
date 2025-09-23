@@ -18,36 +18,43 @@ public class quick {
 
     //int pivo arr[0]
 
-    public static void QuickSortFirstPivot(int esq, int dir, int[] arr) {
-        for(int k = 0; k<=arr.length;k++){
-            System.out.println("Array " + arr [k]);
+  public static void QuickSortFirstPivot(int esq, int dir, int[] arr) {
+    if (esq >= dir) return;
+
+    long startTime = System.nanoTime();
+
+    int i = esq, j = dir;
+    int pivo = arr[esq];
+
+    while (i <= j) {
+        while (arr[i] < pivo) i++;
+        while (arr[j] > pivo) j--;
+        if (i <= j) {
+            // Troca os elementos nas posições i e j
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
         }
-        long startTime = System.nanoTime();
+    }
 
-        int i = esq, j = dir;
-        // int pivo = arr[(dir+esq)/2];
-        int pivo = arr[0];
-        while (i <= j) {
-            while (arr[i] < pivo) i++;
-            while (arr[j] > pivo) j--;
-            if (i <= j) {
-                int swapTemp = arr[i+1];
-                arr[i+1] = arr[dir];
-                arr[dir] = swapTemp;
+    // Chamada recursiva para os subarrays
+    if (esq < j) QuickSortFirstPivot(esq, j, arr);
+    if (i < dir) QuickSortFirstPivot(i, dir, arr);
 
-            }
-        }
-        if (esq < j)  QuickSortFirstPivot(esq, j,arr);
-        if (i < dir)  QuickSortFirstPivot(i, dir,arr);
+    long endTime = System.nanoTime();
+    long durationInNanos = endTime - startTime;
 
-        long endTime = System.nanoTime();
-        long durationInNanos = endTime - startTime;
-
-        for(int o = 0; o<=arr.length;o++){
-            System.out.println("Array ordenada " + arr[o]);
+    // Imprime array ordenada após a recursão completa
+    if (esq == 0 && dir == arr.length - 1) {
+        for (int o = 0; o < arr.length; o++) {
+            System.out.println("Array ordenada: " + arr[o]);
         }
         System.out.println("Execution time: " + durationInNanos + " nanoseconds");
     }
+}
+
     
     public static void main(String[] args) {
         sort();
