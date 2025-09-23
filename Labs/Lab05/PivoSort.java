@@ -46,7 +46,6 @@ public class quick {
     long endTime = System.nanoTime();
     long durationInNanos = endTime - startTime;
 
-    // Imprime array ordenada após a recursão completa
     if (esq == 0 && dir == arr.length - 1) {
         for (int o = 0; o < arr.length; o++) {
             System.out.println("Array ordenada: " + arr[o]);
