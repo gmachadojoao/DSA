@@ -2,11 +2,10 @@ import java.time.LocalDateTime;
 
 public class quick {
     
-    private static int[] arr;
+    private static int[] arr = {13, 25, 50, 90, 9, -1};;
 	private static int n;
 
 	public quick(){
-		arr =  new int[] {13, 25, 50, 90, 9, -1};
 		n = arr.length;
 	}
 
@@ -20,6 +19,9 @@ public class quick {
     //int pivo arr[0]
 
     public static void QuickSortFirstPivot(int esq, int dir, int[] arr) {
+        for(int k = 0; k<=arr.length;k++){
+            System.out.println("Array " + arr [k]);
+        }
         long startTime = System.nanoTime();
 
         int i = esq, j = dir;
@@ -40,6 +42,10 @@ public class quick {
 
         long endTime = System.nanoTime();
         long durationInNanos = endTime - startTime;
+
+        for(int o = 0; o<=arr.length;o++){
+            System.out.println("Array ordenada " + arr[o]);
+        }
         System.out.println("Execution time: " + durationInNanos + " nanoseconds");
     }
     
