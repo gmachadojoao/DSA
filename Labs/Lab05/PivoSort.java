@@ -1,62 +1,78 @@
-import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Random;
 
-public class quick {
-    
-    private static int[] arr = {13, 25, 50, 90, 9, -1};;
-	private static int n;
+public class PivoSort {
 
-	public quick(){
-		n = arr.length;
-	}
-
-    public static void sort(){
-        QuickSortFirstPivot(0, n-1, arr);
-        // QuickSortLastPivot(0, n-1, arr);
-        // QuickSortRandomPivot(0, n-1, arr);
-        // QuickSortMedianOfThree(0, n-1, arr);
+    // ---------- GERADORES DE ARRAYS ----------
+    public static int[] gerarArrayOrdenado(int n) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) arr[i] = i;
+        return arr;
     }
 
-    //int pivo arr[0]
-
-  public static void QuickSortFirstPivot(int esq, int dir, int[] arr) {
-    if (esq >= dir) return;
-
-    long startTime = System.nanoTime();
-
-    int i = esq, j = dir;
-    int pivo = arr[esq];
-
-    while (i <= j) {
-        while (arr[i] < pivo) i++;
-        while (arr[j] > pivo) j--;
-        if (i <= j) {
-            // Troca os elementos nas posições i e j
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            i++;
-            j--;
+    public static int[] gerarArrayQuaseOrdenado(int n) {
+        int[] arr = gerarArrayOrdenado(n);
+        Random rand = new Random();
+        for (int i = 0; i < n / 100; i++) {
+            int idx1 = rand.nextInt(n);
+            int idx2 = rand.nextInt(n);
+            int tmp = arr[idx1];
+            arr[idx1] = arr[idx2];
+            arr[idx2] = tmp;
         }
+        return arr;
     }
 
-    // Chamada recursiva para os subarrays
-    if (esq < j) QuickSortFirstPivot(esq, j, arr);
-    if (i < dir) QuickSortFirstPivot(i, dir, arr);
-
-    long endTime = System.nanoTime();
-    long durationInNanos = endTime - startTime;
-
-    if (esq == 0 && dir == arr.length - 1) {
-        for (int o = 0; o < arr.length; o++) {
-            System.out.println("Array ordenada: " + arr[o]);
-        }
-        System.out.println("Execution time: " + durationInNanos + " nanoseconds");
+    public static int[] gerarArrayAleatorio(int n) {
+        Random rand = new Random();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) arr[i] = rand.nextInt(n * 10);
+        return arr;
     }
-}
 
-    
+    // ---------- BENCHMARK ----------
+    public static void testarAlgoritmos(int[] arrOriginal, String tipoArray) {
+        int[] arr;
+
+        System.out.println("\n===== Testando com array " + tipoArray + " de tamanho " + arrOriginal.length + " =====");
+
+        // First Pivot
+        arr = Arrays.copyOf(arrOriginal, arrOriginal.length);
+        long start = System.nanoTime();
+        FirstPivot.QuickSortFirstPivot(0, arr.length - 1, arr);
+        long end = System.nanoTime();
+        System.out.println("FirstPivot: " + (end - start) + " ns");
+
+        // Last Pivot
+        arr = Arrays.copyOf(arrOriginal, arrOriginal.length);
+        start = System.nanoTime();
+        LastPivot.QuickSortLastPivot(0, arr.length - 1, arr);
+        end = System.nanoTime();
+        System.out.println("LastPivot: " + (end - start) + " ns");
+
+        // Random Pivot
+        arr = Arrays.copyOf(arrOriginal, arrOriginal.length);
+        start = System.nanoTime();
+        RandomPivot.QuickSortRandomPivot(0, arr.length - 1, arr);
+        end = System.nanoTime();
+        System.out.println("RandomPivot: " + (end - start) + " ns");
+
+        // Median of Three
+        arr = Arrays.copyOf(arrOriginal, arrOriginal.length);
+        start = System.nanoTime();
+        MedianOfThreePivot.QuickSortMedianPivot(0, arr.length - 1, arr);
+        end = System.nanoTime();
+        System.out.println("MedianOfThreePivot: " + (end - start) + " ns");
+    }
+
+    // ---------- MAIN ----------
     public static void main(String[] args) {
-        sort();
+        int[] tamanhos = {100, 1000, 10000};
 
+        for (int n : tamanhos) {
+            testarAlgoritmos(gerarArrayOrdenado(n), "ordenado");
+            testarAlgoritmos(gerarArrayQuaseOrdenado(n), "quase ordenado");
+            testarAlgoritmos(gerarArrayAleatorio(n), "aleatório");
+        }
     }
 }

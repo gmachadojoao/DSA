@@ -1,0 +1,22 @@
+class tp4{
+
+    private int appID;
+    private String name;
+    private String releaseData;
+    private int compradores;
+    private double preco;
+    private String lings;
+    private int score;
+    private int nUsers;
+    private int nConquistas;
+    private String equip;
+    private String devs;
+    private String categorias;
+    private String generos;
+    private String tags;
+
+    
+    public static void main(String[] args) {
+
+    }
+}
