@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-// Classe representando cada jogo
 class Tp4 {
     private String appID;
     private String name;
@@ -23,18 +22,9 @@ class Tp4 {
 
     public Tp4() {}
 
-    // Setters
     public void setAppID(String appID) { this.appID = appID.trim(); }
     public void setName(String name) { this.name = name.trim(); }
-    public void setReleaseDate(String releaseDate) {
-        try {
-            SimpleDateFormat inputFormat = new SimpleDateFormat("MMM dd, yyyy");
-            inputFormat.setLenient(false);
-            this.releaseDate = inputFormat.format(inputFormat.parse(releaseDate));
-        } catch (ParseException e) {
-            this.releaseDate = releaseDate.trim();
-        }
-    }
+    public void setReleaseDate(String releaseDate) { this.releaseDate = releaseDate.trim(); }
     public void setCompradores(String compradores) { this.compradores = compradores.trim(); }
     public void setPreco(String preco) { this.preco = preco.trim(); }
     public void setScore(String score) { this.score = score.trim(); }
@@ -51,26 +41,59 @@ class Tp4 {
 
     @Override
     public String toString() {
-        return appID + "," + name + "," + releaseDate + "," + compradores + "," + preco + ","
-                + supportedLanguages + "," + score + "," + userScore + "," + nConquistas + ","
-                + publishers + "," + developers + "," + categorias + "," + generos + "," + tags;
+        String dataFormatada = releaseDate;
+        try {
+            SimpleDateFormat entrada = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+            SimpleDateFormat saida = new SimpleDateFormat("dd/MM/yyyy");
+            dataFormatada = saida.format(entrada.parse(releaseDate.replace("\"", "")));
+        } catch (ParseException e) {}
+
+        return "=> "+ appID + " ## " +
+               limpar(name) + " ## " +
+               dataFormatada + " ## " +
+               limpar(compradores) + " ## " +
+               limpar(preco) + " ## " +
+               "[" + limparLista(supportedLanguages) + "] ## " +
+               limpar(score) + " ## " +
+               limpar(userScore) + " ## " +
+               limpar(nConquistas) + " ## " +
+               "[" + limparLista(publishers) + "] ## " +
+               "[" + limparLista(developers) + "] ## " +
+               "[" + limparLista(categorias) + "] ## " +
+               "[" + limparLista(generos) + "] ## " +
+               "[" + limparLista(tags) + "] ##";
+    }
+
+    private String limpar(String campo) {
+        if (campo == null) return "";
+        return campo.replace("\"", "").replace("[", "").replace("]", "").trim();
+    }
+
+    private String limparLista(String campo) {
+        campo = limpar(campo);
+        String[] partes = campo.split(",");
+        String resultado = "";
+        for (int i = 0; i < partes.length; i++) {
+            String item = partes[i].trim();
+            if (!item.isEmpty()) {
+                if (!resultado.isEmpty()) resultado += ", ";
+                resultado += item;
+            }
+        }
+        return resultado;
     }
 }
 
-// Classe principal
 public class Main {
     public static void main(String[] args) {
-        String path = "games.csv";
+        String path = "/tmp/games.csv";
         List<Tp4> jogos = new ArrayList<>();
 
-        // Leitura do CSV
         try (Scanner scanner = new Scanner(new File(path))) {
-            if(scanner.hasNextLine()) scanner.nextLine(); // Pula cabeçalho
+            if (scanner.hasNextLine()) scanner.nextLine();
 
-            while(scanner.hasNextLine()) {
+            while (scanner.hasNextLine()) {
                 String linha = scanner.nextLine();
-
-                // Split que respeita vírgulas dentro de aspas
                 String[] campos = linha.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                 Tp4 jogo = new Tp4();
@@ -96,19 +119,20 @@ public class Main {
             return;
         }
 
-        // Entrada do usuário
         Scanner input = new Scanner(System.in);
-        System.out.println("Digite o ID do jogo que deseja consultar:");
-        String idBusca = input.nextLine().trim();
+        String idBusca;
+        while (true) {
+            idBusca = input.nextLine().trim();
+            if (idBusca.equalsIgnoreCase("Fim")) break;
 
-        // Busca pelo ID e impressão
-        boolean encontrado = false;
-        for(Tp4 jogo : jogos) {
-            if(jogo.getAppID() == (idBusca)) {
-                System.out.println(jogo);
-                encontrado = true;
-                break;
+            boolean encontrado = false;
+            for (Tp4 jogo : jogos) {
+                if (idBusca.equals(jogo.getAppID())) {
+                    System.out.println(jogo);
+                    encontrado = true;
+                }
             }
+            if (!encontrado) System.out.println("Jogo com ID " + idBusca + " não encontrado.");
         }
     }
 }
