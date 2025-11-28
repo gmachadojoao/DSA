@@ -1,0 +1,15 @@
+[Event "Live Chess"]
+[Site "Chess.com"]
+[Date "2025.10.27"]
+[Round "-"]
+[White "abdal5410"]
+[Black "jottario"]
+[Result "0-1"]
+[WhiteElo "151"]
+[BlackElo "184"]
+[TimeControl "600"]
+[EndTime "22:28:13 GMT+0000"]
+[Termination "jottario venceu por xeque-mate"]
+
+1. e4 e5 2. d4 d6 3. dxe5 dxe5 4. Qf3 Nc6 5. Bc4 Nd4 6. Qh5 g6 7. Qxe5+ Be6 8.
+Qxh8 Nxc2+ 9. Kf1 Qd1# 0-1

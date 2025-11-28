@@ -1,0 +1,41 @@
+=== Criando tabuleiro 8x8 ===
+
+=== Inserindo peças ===
+
+=== Tabuleiro atual ===
+[0,0]: torre(b)
+[0,1]: cavalo(b)
+[3,4]: disco(p), peao(p)
+[7,7]: rei(b)
+
+=== Movendo peça ===
+Elemento 'torre' movido de [0,0] para [2,0]
+
+=== Tabuleiro após movimento ===
+[0,1]: cavalo(b)
+[2,0]: torre(b)
+[3,4]: disco(p), peao(p)
+[7,7]: rei(b)
+
+=== Caminhos possíveis de [3,4] em 2 passos ===
+[3,4] 
+  Cima: [2,4] 
+  Cima: [1,4] 
+  Baixo: [3,4] 
+  Esquerda: [2,3] 
+  Direita: [2,5] 
+  Baixo: [4,4] 
+  Cima: [3,4] 
+  Baixo: [5,4] 
+  Esquerda: [4,3] 
+  Direita: [4,5] 
+  Esquerda: [3,3] 
+  Cima: [2,3] 
+  Baixo: [4,3] 
+  Esquerda: [3,2] 
+  Direita: [3,4] 
+  Direita: [3,5] 
+  Cima: [2,5] 
+  Baixo: [4,5] 
+  Esquerda: [3,4] 
+  Direita: [3,6] 
